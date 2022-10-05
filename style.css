@@ -1,0 +1,95 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 7.5vmin;
+}
+
+.header{
+    display: flex;
+    width: max(80vmin,100px);
+    margin-top: 2.5vmin;
+    margin-bottom: 2vmin;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1vmin;
+    border-bottom: 1px solid white;
+}
+
+.title{
+    margin: 0;
+    font-size: max(6vmin,20px);
+    flex-grow: 1;
+    color: #CCC;
+}
+
+.score-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label{
+    position: relative;
+    font-size: max(3vmin,13px);
+    line-height: 1.2;
+    color: #AAA;
+}
+
+.score{
+    position: relative;
+    font-size: max(4vmin,15px);
+    font-weight: bold;
+    color: #CCC;
+}
+
+#game-board {
+    display: grid;
+    grid-template-rows: repeat( var(--grid-size), var(--cell-size));
+    grid-template-columns: repeat( var(--grid-size), var(--cell-size));;
+    background-color: #CCC;
+    gap: var(--cell-gap);
+    border-radius: 1vmin;
+    padding: var(--cell-gap);
+    position: relative;
+}
+
+.cell{
+    background-color: #AAA;
+    border-radius: 1vmin;
+}
+
+.tile{
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 1vmin;
+    top: calc( var(--y) * ( var(--cell-size) + var(--cell-gap) ) + var(--cell-gap) );
+    left: calc( var(--x) * ( var(--cell-size) + var(--cell-gap) ) + var(--cell-gap) );
+    font-weight: bold;
+    background-color: hsl(200, 50%, var(--background-lightness));
+    color: hsl(200, 25%, var(--text-lightness));
+    transition: 100ms ease-in-out;
+    animation: show 200ms ease-in-out;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0.5;
+        transform: scale(0);
+    }
+}
